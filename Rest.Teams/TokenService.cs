@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Domain.Teams;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace Rest.Teams
             }
             else
             {
-                throw new Exception("No pudo generarse la llamada. Por favor intente mas tarde.");
+                throw new Exception(responseToken.Content.ReadAsStringAsync().Result);
             }
         }
 

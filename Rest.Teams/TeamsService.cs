@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Domain.Teams;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Dynamic;
@@ -10,11 +11,18 @@ namespace Rest.Teams
 {
     public class TeamsService
     {
-        public string CrearMeeting(string token)
+        private string token;
+
+        public TeamsService(string _token)
         {
-            var urlMeeting = "https://graph.microsoft.com/v1.0/me/onlineMeetings";
+            token = _token;
+        }
+
+        public string CrearMeeting()
+        {
+            var urlPostMeeting = Constantes.UrlPostMeeting;
             
-            return CrearMeeting(token, urlMeeting);
+            return CrearMeeting(token, urlPostMeeting);
         }
 
         private static string CrearMeeting(string token, string urlMeeting)
@@ -37,7 +45,7 @@ namespace Rest.Teams
                 }
                 else
                 {
-                    throw new Exception("No pudo generarse la llamada. Por favor intente mas tarde.");
+                    throw new Exception(responseMeeting.Content.ReadAsStringAsync().Result);
                 }
             };
         }

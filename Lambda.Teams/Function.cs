@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Amazon.Lambda.Core;
+using Domain.Teams;
 using Rest.Teams;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -13,15 +14,30 @@ namespace Lambda.Teams
 {
     public class Function
     {
+        protected string token;
         public string FunctionHandler(ILambdaContext context)
         {
-            var tokenService = new TokenService();
-            var token = tokenService.ObtenerToken();
+            try
+            {
+                var tokenService = new TokenService();
+                token = tokenService.ObtenerToken();
+            }
+            catch (Exception ex)
+            {
+                LambdaLogger.Log($"Error en ObtenerToken: {context.FunctionName}\n" + " Excepcion: " + ex.Message);
+                throw new Exception(Constantes.ExcepcionGenerica);
+            }
 
-            var teamsService = new TeamsService();
-            var urlMeeting = teamsService.CrearMeeting(token);
-            
-            return urlMeeting;
+            try
+            {
+                var teamsService = new TeamsService(token);
+                return teamsService.CrearMeeting();
+            }
+            catch (Exception ex)
+            {
+                LambdaLogger.Log($"Error en CrearMeeting: {context.FunctionName}\n" + " Excepcion: " + ex.Message);
+                throw new Exception(Constantes.ExcepcionGenerica);
+            }
         }
     }
 }
