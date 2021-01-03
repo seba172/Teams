@@ -16,10 +16,10 @@ namespace Lambda.Teams
         public string FunctionHandler(ILambdaContext context)
         {
             var tokenService = new TokenService();
-            var token = tokenService.obtenerToken();
+            var token = tokenService.ObtenerToken();
 
             var teamsService = new TeamsService();
-            var urlMeeting = teamsService.crearMeeting(token);
+            var urlMeeting = teamsService.CrearMeeting(token);
             
             return urlMeeting;
         }

@@ -11,12 +11,19 @@ namespace Rest.Teams
 {
     public class TeamsService
     {
-        public string crearMeeting(string token)
+        public string CrearMeeting(string token)
         {
-            var urlMeeting = "https://graph.microsoft.com/beta/me/onlineMeetings";
-            var urlMeet = "";
+            var urlMeeting = "https://graph.microsoft.com/v1.0/me/onlineMeetings";
+            
+            return PostMeeting(token, urlMeeting);
+        }
 
-            string myJson = "{'subject': 'myusername', 'lobbyBypassSettings':{'scope':'everyone'} }";
+        private static string PostMeeting(string token, string urlMeeting)
+        {
+            string urlMeet;
+            
+            string myJson = "{'subject': 'Meeting Subject', 'lobbyBypassSettings':{'scope':'everyone'} }";
+            
             using (var client2 = new HttpClient())
             {
                 client2.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -30,7 +37,6 @@ namespace Rest.Teams
                 dynamic jsonObject = JsonConvert.DeserializeObject<ExpandoObject>(result, new ExpandoObjectConverter()); ;
                 urlMeet = jsonObject.joinWebUrl;
             };
-
             return urlMeet;
         }
     }
