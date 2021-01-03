@@ -11,5 +11,6 @@ namespace Domain.Teams
         public const string UrlMeeting = "https://graph.microsoft.com/";
         public const string EndPointMeeting = "v1.0/me/onlineMeetings";
         public const string ExcepcionGenerica = "No pudo generarse la llamada. Por favor intente mas tarde.";
+        public const string SubjetMeeting = "Meeting Subject";
     }
 }

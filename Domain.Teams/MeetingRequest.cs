@@ -6,6 +6,6 @@ namespace Domain.Teams
 {
     public class MeetingRequest
     {
-
+        public string subject { get; set; }
     }
 }
