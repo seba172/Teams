@@ -25,9 +25,26 @@ namespace Rest.Teams
         private static dynamic GenerarToken(Dictionary<string, string> configuracion, string urlToken)
         {
             var clientToken = new HttpClient();
-            var request = new HttpRequestMessage(HttpMethod.Post, urlToken) { Content = new FormUrlEncodedContent(configuracion) };
-            var responseToken = clientToken.SendAsync(request).Result;
 
+            var request = ArmarRequest(configuracion, urlToken);
+            
+            var responseToken = EnviarSolicitud(clientToken, request);
+
+            return ProcesarRespuesta(responseToken);
+        }
+
+        private static HttpRequestMessage ArmarRequest(Dictionary<string, string> configuracion, string urlToken)
+        {
+            return new HttpRequestMessage(HttpMethod.Post, urlToken) { Content = new FormUrlEncodedContent(configuracion) };
+        }
+
+        private static HttpResponseMessage EnviarSolicitud(HttpClient clientToken, HttpRequestMessage request)
+        {
+            return clientToken.SendAsync(request).Result;
+        }
+
+        private static dynamic ProcesarRespuesta(HttpResponseMessage responseToken)
+        {
             if (responseToken.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 string result = responseToken.Content.ReadAsStringAsync().Result;

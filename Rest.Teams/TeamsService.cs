@@ -21,38 +21,55 @@ namespace Rest.Teams
         public string CrearMeeting()
         {
             var urlPostMeeting = Constantes.UrlMeeting + Constantes.EndPointMeeting;
-            
-            return CrearMeeting(token, urlPostMeeting);
+
+            string jsonRequest = ArmarBody();
+
+            using (var clientMeeting = new HttpClient())
+            {
+                CompletarHeader(token, clientMeeting);
+
+                var responseMeeting = EnviarSolicitud(urlPostMeeting, jsonRequest, clientMeeting);
+
+                return ProcesarRespuesta(responseMeeting);
+            };
         }
 
-        private static string CrearMeeting(string token, string urlMeeting)
+        private static string ArmarBody()
         {
-            var meetingRequest = new {
+            var meetingRequest = new
+            {
                 subject = Constantes.SubjetMeeting,
                 lobbyBypassSettings = new { scope = "everyone" }
             };
 
             string jsonRequest = JsonConvert.SerializeObject(meetingRequest);
+            return jsonRequest;
+        }
 
-            using (var clientMeeting = new HttpClient())
+        private static void CompletarHeader(string token, HttpClient clientMeeting)
+        {
+            clientMeeting.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            clientMeeting.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+        }
+
+        private static HttpResponseMessage EnviarSolicitud(string urlMeeting, string jsonRequest, HttpClient clientMeeting)
+        {
+            return clientMeeting.PostAsync(urlMeeting, new StringContent(jsonRequest, Encoding.UTF8, "application/json")).Result;
+        }
+
+        private static string ProcesarRespuesta(HttpResponseMessage responseMeeting)
+        {
+            if (responseMeeting.StatusCode == System.Net.HttpStatusCode.Created)
             {
-                clientMeeting.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                clientMeeting.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                var result = responseMeeting.Content.ReadAsStringAsync().Result;
 
-                var responseMeeting = clientMeeting.PostAsync(urlMeeting, new StringContent(jsonRequest, Encoding.UTF8, "application/json")).Result;
-
-                if (responseMeeting.StatusCode == System.Net.HttpStatusCode.Created)
-                {
-                    var result = responseMeeting.Content.ReadAsStringAsync().Result;
-
-                    dynamic jsonObject = JsonConvert.DeserializeObject<ExpandoObject>(result, new ExpandoObjectConverter());
-                    return jsonObject.joinWebUrl;
-                }
-                else
-                {
-                    throw new Exception(responseMeeting.Content.ReadAsStringAsync().Result);
-                }
-            };
+                dynamic jsonObject = JsonConvert.DeserializeObject<ExpandoObject>(result, new ExpandoObjectConverter());
+                return jsonObject.joinWebUrl;
+            }
+            else
+            {
+                throw new Exception(responseMeeting.Content.ReadAsStringAsync().Result);
+            }
         }
     }
 }
