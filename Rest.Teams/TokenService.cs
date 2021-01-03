@@ -14,9 +14,10 @@ namespace Rest.Teams
         public string ObtenerToken()
         {
             Dictionary<string, string> configuracion = ObtenerConfiguracion();
+            
             var tenantId = configuracion["tenantId"];
 
-            var urlToken = $"https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token";
+            var urlToken = Constantes.UrlToken + tenantId + Constantes.EndPointToken;
 
             return GenerarToken(configuracion, urlToken);
         }

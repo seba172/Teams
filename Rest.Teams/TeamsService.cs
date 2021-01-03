@@ -20,7 +20,7 @@ namespace Rest.Teams
 
         public string CrearMeeting()
         {
-            var urlPostMeeting = Constantes.UrlPostMeeting;
+            var urlPostMeeting = Constantes.UrlMeeting + Constantes.EndPointMeeting;
             
             return CrearMeeting(token, urlPostMeeting);
         }
