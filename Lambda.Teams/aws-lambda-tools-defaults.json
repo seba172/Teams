@@ -13,7 +13,7 @@
     "function-runtime" : "dotnetcore3.1",
     "function-memory-size" : 256,
     "function-timeout"     : 30,
-    "function-handler"     : "Lambda.Teams::Lambda.Teams.Function::FunctionHandler",
+    "function-handler"     : "Lambda.Teams::Lambda.Teams.CreateMeeting::FunctionHandler",
     "function-name"        : "CrearMeeting",
     "function-description" : "Genera una reunion en Microsoft.Teams",
     "package-type"         : "Zip",

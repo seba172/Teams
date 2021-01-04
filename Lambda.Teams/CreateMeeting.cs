@@ -12,7 +12,7 @@ using Rest.Teams;
 
 namespace Lambda.Teams
 {
-    public class Function
+    public class CreateMeeting
     {
         protected string token;
         public string FunctionHandler(ILambdaContext context)
