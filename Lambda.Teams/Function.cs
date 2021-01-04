@@ -19,18 +19,7 @@ namespace Lambda.Teams
         {
             try
             {
-                var tokenService = new TokenService();
-                token = tokenService.ObtenerToken();
-            }
-            catch (Exception ex)
-            {
-                LambdaLogger.Log($"Error en ObtenerToken: {context.FunctionName}\n" + " Excepcion: " + ex.Message);
-                throw new Exception(Constantes.ExcepcionGenerica);
-            }
-
-            try
-            {
-                var teamsService = new TeamsService(token);
+                var teamsService = new TeamsService();
                 return teamsService.CrearMeeting();
             }
             catch (Exception ex)

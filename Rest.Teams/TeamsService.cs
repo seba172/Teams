@@ -13,13 +13,10 @@ namespace Rest.Teams
     {
         private string token;
 
-        public TeamsService(string _token)
-        {
-            token = _token;
-        }
-
         public string CrearMeeting()
         {
+            token = TokenService.ObtenerToken();
+
             var urlPostMeeting = Constantes.UrlMeeting + Constantes.EndPointMeeting;
 
             string jsonRequest = ArmarBody();

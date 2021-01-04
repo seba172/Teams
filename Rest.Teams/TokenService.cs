@@ -9,9 +9,9 @@ using System.Text;
 
 namespace Rest.Teams
 {
-    public class TokenService
+    public static class TokenService
     {
-        public string ObtenerToken()
+        public static string ObtenerToken()
         {
             Dictionary<string, string> configuracion = ObtenerConfiguracion();
             
