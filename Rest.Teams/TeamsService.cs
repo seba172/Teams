@@ -50,7 +50,7 @@ namespace Rest.Teams
         {
             var meetingRequest = new
             {
-                body = new { content = url }
+                body = new { contentType = "html", content = $"Un cliente necesita contactarse: <a href={url}>Unirse a la reunion</a>" }
             };
 
             string jsonRequest = JsonConvert.SerializeObject(meetingRequest);
