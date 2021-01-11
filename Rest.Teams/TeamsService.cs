@@ -93,15 +93,15 @@ namespace Rest.Teams
 
                 var responseMeeting = EnviarSolicitud(urlPostNotificacionCanal, jsonRequest, clientMeeting);
 
-                return ProcesarRespuestaNotificacionCanal(responseMeeting);
+                return ProcesarRespuestaNotificacionCanal(responseMeeting, linkMeeting);
             };
         }
 
-        private static string ProcesarRespuestaNotificacionCanal(HttpResponseMessage responseMeeting)
+        private static string ProcesarRespuestaNotificacionCanal(HttpResponseMessage responseMeeting, string linkMeeting)
         {
             if (responseMeeting.StatusCode == System.Net.HttpStatusCode.Created)
             {
-                return "Reunion Creada y Notificada";
+                return "Reunion Creada y Notificada: " + linkMeeting;
             }
             else
             {
