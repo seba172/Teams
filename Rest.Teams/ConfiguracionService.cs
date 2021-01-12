@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Rest.Teams
 {
-    public static class ConfiguracionService
+    public class ConfiguracionService
     {
-        public static Dictionary<string, string> ObtenerConfiguracion()
+        public Dictionary<string, string> ObtenerConfiguracion()
         {
             var config = new Dictionary<string, string>();
             config.Add("grant_type", "password");

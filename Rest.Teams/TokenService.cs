@@ -9,11 +9,11 @@ using System.Text;
 
 namespace Rest.Teams
 {
-    public static class TokenService
+    public class TokenService
     {
-        public static string ObtenerToken()
+        public string ObtenerToken()
         {
-            Dictionary<string, string> configuracion = ConfiguracionService.ObtenerConfiguracion();
+            Dictionary<string, string> configuracion = new ConfiguracionService().ObtenerConfiguracion();
             
             var tenantId = configuracion["tenantId"];
 
@@ -22,7 +22,7 @@ namespace Rest.Teams
             return GenerarToken(configuracion, urlToken);
         }
 
-        private static dynamic GenerarToken(Dictionary<string, string> configuracion, string urlToken)
+        private dynamic GenerarToken(Dictionary<string, string> configuracion, string urlToken)
         {
             var clientToken = new HttpClient();
 
@@ -33,17 +33,17 @@ namespace Rest.Teams
             return ProcesarRespuesta(responseToken);
         }
 
-        private static HttpRequestMessage ArmarRequest(Dictionary<string, string> configuracion, string urlToken)
+        private HttpRequestMessage ArmarRequest(Dictionary<string, string> configuracion, string urlToken)
         {
             return new HttpRequestMessage(HttpMethod.Post, urlToken) { Content = new FormUrlEncodedContent(configuracion) };
         }
 
-        private static HttpResponseMessage EnviarSolicitud(HttpClient clientToken, HttpRequestMessage request)
+        private HttpResponseMessage EnviarSolicitud(HttpClient clientToken, HttpRequestMessage request)
         {
             return clientToken.SendAsync(request).Result;
         }
 
-        private static dynamic ProcesarRespuesta(HttpResponseMessage responseToken)
+        private dynamic ProcesarRespuesta(HttpResponseMessage responseToken)
         {
             if (responseToken.StatusCode == System.Net.HttpStatusCode.OK)
             {

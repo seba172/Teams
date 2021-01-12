@@ -25,8 +25,7 @@ namespace Rest.Teams
 
         public string CrearMeeting()
         {
-            token = TokenService.ObtenerToken();
-
+            token = new TokenService().ObtenerToken();
 
             string jsonRequest = ArmarBodyMeeting();
 
@@ -42,7 +41,7 @@ namespace Rest.Teams
             };
         }       
 
-        private static string ArmarBodyMeeting()
+        private string ArmarBodyMeeting()
         {
             var meetingRequest = new
             {
@@ -54,7 +53,7 @@ namespace Rest.Teams
             return jsonRequest;
         }
 
-        private static string ArmarBodyNotificacionCanal(string url)
+        private string ArmarBodyNotificacionCanal(string url)
         {
             var meetingRequest = new
             {
@@ -65,18 +64,18 @@ namespace Rest.Teams
             return jsonRequest;
         }
 
-        private static void CompletarHeader(string token, HttpClient clientMeeting)
+        private void CompletarHeader(string token, HttpClient clientMeeting)
         {
             clientMeeting.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             clientMeeting.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
         }
 
-        private static HttpResponseMessage EnviarSolicitud(string urlMeeting, string jsonRequest, HttpClient clientMeeting)
+        private HttpResponseMessage EnviarSolicitud(string urlMeeting, string jsonRequest, HttpClient clientMeeting)
         {
             return clientMeeting.PostAsync(urlMeeting, new StringContent(jsonRequest, Encoding.UTF8, "application/json")).Result;
         }
 
-        private static string ProcesarRespuestaMeeting(HttpResponseMessage responseMeeting)
+        private string ProcesarRespuestaMeeting(HttpResponseMessage responseMeeting)
         {
             if (responseMeeting.StatusCode == System.Net.HttpStatusCode.Created)
             {
@@ -99,7 +98,7 @@ namespace Rest.Teams
             {
                 CompletarHeader(token, clientMeeting);
 
-                Dictionary<string, string> configuracion = ConfiguracionService.ObtenerConfiguracion();
+                Dictionary<string, string> configuracion = new ConfiguracionService().ObtenerConfiguracion();
 
                 urlPostNotificacionCanal = Constantes.UrlApiGraph + Constantes.EndPointNotificacionTeams + configuracion["teamId"] + Constantes.EndPointNotificacionChannel + configuracion["channelId"] + Constantes.EndPointNotificacionMessages;
                 
@@ -109,7 +108,7 @@ namespace Rest.Teams
             };
         }
 
-        private static string ProcesarRespuestaNotificacionCanal(HttpResponseMessage responseMeeting, string linkMeeting)
+        private string ProcesarRespuestaNotificacionCanal(HttpResponseMessage responseMeeting, string linkMeeting)
         {
             if (responseMeeting.StatusCode == System.Net.HttpStatusCode.Created)
             {
