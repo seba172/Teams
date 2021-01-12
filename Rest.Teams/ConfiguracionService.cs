@@ -33,7 +33,7 @@ namespace Rest.Teams
 
 
             //Esto solo sirve para indicar si lee esta diccionario o una bd mongo
-            config.Add("config", "mongo");//config= mongo o //config= ""
+            config.Add("config", "");//config= mongo o //config= ""
             return config;
         }
 

@@ -115,7 +115,8 @@ namespace Rest.Teams
         {
             if (responseMeeting.StatusCode == System.Net.HttpStatusCode.Created)
             {
-                return "Reunion Creada y Notificada: " + linkMeeting;
+                //return "Reunion Creada y Notificada: " + linkMeeting;
+                return linkMeeting;
             }
             else
             {
