@@ -13,7 +13,7 @@ namespace Rest.Teams
     {
         public static string ObtenerToken()
         {
-            Dictionary<string, string> configuracion = ObtenerConfiguracion();
+            Dictionary<string, string> configuracion = ConfiguracionService.ObtenerConfiguracion();
             
             var tenantId = configuracion["tenantId"];
 
@@ -55,20 +55,6 @@ namespace Rest.Teams
             {
                 throw new Exception(responseToken.Content.ReadAsStringAsync().Result);
             }
-        }
-
-        private static Dictionary<string, string> ObtenerConfiguracion()
-        {           
-            var config = new Dictionary<string, string>();
-            config.Add("grant_type", "password");
-            config.Add("userName", "amartin@developar.onmicrosoft.com");
-            config.Add("password", "Alej1211");
-            config.Add("client_secret", "uc5kaha4_8yA~_u4w.P.PKQ86aH_msybiT");
-            config.Add("client_id", "3afcdd76-99eb-446d-952c-5ee6c1142698");
-            config.Add("scope", "https://graph.microsoft.com/.default");
-            config.Add("tenantId", "20f9a21d-88c0-4e21-8617-3c7298c5874a");
-
-            return config;
-        }       
+        }        
     }
 }

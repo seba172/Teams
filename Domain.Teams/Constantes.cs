@@ -6,6 +6,7 @@ namespace Domain.Teams
 {
     public class Constantes
     {
+        //Endpoints No Configurables por desarrollo
         public const string UrlToken = "https://login.microsoftonline.com/";
         public const string EndPointToken = "/oauth2/v2.0/token";
         public const string UrlApiGraph = "https://graph.microsoft.com/";
@@ -13,8 +14,9 @@ namespace Domain.Teams
         public const string EndPointNotificacionTeams = "v1.0/teams/";
         public const string EndPointNotificacionChannel = "/channels/";
         public const string EndPointNotificacionMessages = "/messages";
+
+        //Configurables por desarrollo
         public const string ExcepcionGenerica = "No pudo generarse la llamada. Por favor intente mas tarde.";
         public const string SubjetMeeting = "Meeting Subject";
-        //public const string EndPointNotificacion = "v1.0/teams/4a899aa9-7a66-4236-8c14-b34289978e9d/channels/19%3ac3e849911bc04c15bb43c1ad3f40a0ec%40thread.tacv2/messages";
     }
 }

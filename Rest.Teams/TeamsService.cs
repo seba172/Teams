@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
+using System.Collections.Generic;
 using System.Dynamic;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -18,9 +19,6 @@ namespace Rest.Teams
             El valor groupId se corresponde con el teamId
             El valor que se encuentra luego de channel se corresponde con el channelId
         */
-
-        private string teamId = "4a899aa9-7a66-4236-8c14-b34289978e9d";
-        private string channelId = "19%3ac3e849911bc04c15bb43c1ad3f40a0ec%40thread.tacv2";
         private string token;
         private string urlPostMeeting = Constantes.UrlApiGraph + Constantes.EndPointMeeting;
         private string urlPostNotificacionCanal;
@@ -101,7 +99,9 @@ namespace Rest.Teams
             {
                 CompletarHeader(token, clientMeeting);
 
-                urlPostNotificacionCanal = Constantes.UrlApiGraph + Constantes.EndPointNotificacionTeams + teamId + Constantes.EndPointNotificacionChannel + channelId + Constantes.EndPointNotificacionMessages;
+                Dictionary<string, string> configuracion = ConfiguracionService.ObtenerConfiguracion();
+
+                urlPostNotificacionCanal = Constantes.UrlApiGraph + Constantes.EndPointNotificacionTeams + configuracion["teamId"] + Constantes.EndPointNotificacionChannel + configuracion["channelId"] + Constantes.EndPointNotificacionMessages;
                 
                 var responseMeeting = EnviarSolicitud(urlPostNotificacionCanal, jsonRequest, clientMeeting);
 
