@@ -1,24 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Sistemas\\Teams\\Lambda.Teams\\Lambda.Teams.csproj": {}
+    "D:\\Desarrollos\\Teams\\Lambda.Teams\\Lambda.Teams.csproj": {}
   },
   "projects": {
-    "D:\\Sistemas\\Teams\\Domain.Teams\\Domain.Teams.csproj": {
+    "D:\\Desarrollos\\Teams\\Domain.Teams\\Domain.Teams.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Sistemas\\Teams\\Domain.Teams\\Domain.Teams.csproj",
+        "projectUniqueName": "D:\\Desarrollos\\Teams\\Domain.Teams\\Domain.Teams.csproj",
         "projectName": "Domain.Teams",
-        "projectPath": "D:\\Sistemas\\Teams\\Domain.Teams\\Domain.Teams.csproj",
-        "packagesPath": "C:\\Users\\sebaf\\.nuget\\packages\\",
-        "outputPath": "D:\\Sistemas\\Teams\\Domain.Teams\\obj\\",
+        "projectPath": "D:\\Desarrollos\\Teams\\Domain.Teams\\Domain.Teams.csproj",
+        "packagesPath": "C:\\Users\\CASA\\.nuget\\packages\\",
+        "outputPath": "D:\\Desarrollos\\Teams\\Domain.Teams\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\sebaf\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\CASA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -29,6 +31,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -40,6 +43,13 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.12.0-beta1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -55,25 +65,27 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Sistemas\\Teams\\Lambda.Teams\\Lambda.Teams.csproj": {
+    "D:\\Desarrollos\\Teams\\Lambda.Teams\\Lambda.Teams.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Sistemas\\Teams\\Lambda.Teams\\Lambda.Teams.csproj",
+        "projectUniqueName": "D:\\Desarrollos\\Teams\\Lambda.Teams\\Lambda.Teams.csproj",
         "projectName": "Lambda.Teams",
-        "projectPath": "D:\\Sistemas\\Teams\\Lambda.Teams\\Lambda.Teams.csproj",
-        "packagesPath": "C:\\Users\\sebaf\\.nuget\\packages\\",
-        "outputPath": "D:\\Sistemas\\Teams\\Lambda.Teams\\obj\\",
+        "projectPath": "D:\\Desarrollos\\Teams\\Lambda.Teams\\Lambda.Teams.csproj",
+        "packagesPath": "C:\\Users\\CASA\\.nuget\\packages\\",
+        "outputPath": "D:\\Desarrollos\\Teams\\Lambda.Teams\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\sebaf\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\CASA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -84,9 +96,10 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Sistemas\\Teams\\Rest.Teams\\Rest.Teams.csproj": {
-                "projectPath": "D:\\Sistemas\\Teams\\Rest.Teams\\Rest.Teams.csproj"
+              "D:\\Desarrollos\\Teams\\Rest.Teams\\Rest.Teams.csproj": {
+                "projectPath": "D:\\Desarrollos\\Teams\\Rest.Teams\\Rest.Teams.csproj"
               }
             }
           }
@@ -99,7 +112,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Amazon.Lambda.APIGatewayEvents": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            },
             "Amazon.Lambda.Core": {
               "target": "Package",
               "version": "[1.2.0, )"
@@ -124,25 +142,27 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Sistemas\\Teams\\Rest.Teams\\Rest.Teams.csproj": {
+    "D:\\Desarrollos\\Teams\\Rest.Teams\\Rest.Teams.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Sistemas\\Teams\\Rest.Teams\\Rest.Teams.csproj",
+        "projectUniqueName": "D:\\Desarrollos\\Teams\\Rest.Teams\\Rest.Teams.csproj",
         "projectName": "Rest.Teams",
-        "projectPath": "D:\\Sistemas\\Teams\\Rest.Teams\\Rest.Teams.csproj",
-        "packagesPath": "C:\\Users\\sebaf\\.nuget\\packages\\",
-        "outputPath": "D:\\Sistemas\\Teams\\Rest.Teams\\obj\\",
+        "projectPath": "D:\\Desarrollos\\Teams\\Rest.Teams\\Rest.Teams.csproj",
+        "packagesPath": "C:\\Users\\CASA\\.nuget\\packages\\",
+        "outputPath": "D:\\Desarrollos\\Teams\\Rest.Teams\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\sebaf\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\CASA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -153,9 +173,10 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Sistemas\\Teams\\Domain.Teams\\Domain.Teams.csproj": {
-                "projectPath": "D:\\Sistemas\\Teams\\Domain.Teams\\Domain.Teams.csproj"
+              "D:\\Desarrollos\\Teams\\Domain.Teams\\Domain.Teams.csproj": {
+                "projectPath": "D:\\Desarrollos\\Teams\\Domain.Teams\\Domain.Teams.csproj"
               }
             }
           }
@@ -168,6 +189,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Newtonsoft.Json": {
               "target": "Package",
@@ -189,7 +211,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

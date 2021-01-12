@@ -31,7 +31,12 @@ namespace Rest.Teams
             config.Add("teamId", "205df3c8-cb94-4596-a1f8-73317f2f8278");
             config.Add("channelId", "19%3a47bf61651d4d45dfa2eb14076f235f9b%40thread.tacv2");
 
+
+            //Esto solo sirve para indicar si lee esta diccionario o una bd mongo
+            config.Add("config", "mongo");//config= mongo o //config= ""
             return config;
         }
+
+       
     }
 }

@@ -16,7 +16,7 @@ namespace Rest.Teams
         private string urlPostMeeting = Constantes.UrlApiGraph + Constantes.EndPointMeeting;
         private string urlPostNotificacionCanal;
 
-        public string CrearMeeting()
+        public string CrearMeeting(string cliente, string producto)
         {
             token = new TokenService().ObtenerToken();
 
@@ -30,7 +30,7 @@ namespace Rest.Teams
 
                 var linkMeeting = ProcesarRespuestaMeeting(responseMeeting);
 
-                return EnviarNotificacionACanal(linkMeeting);
+                return EnviarNotificacionACanal(linkMeeting, cliente, producto);
             };
         }       
 
@@ -46,11 +46,11 @@ namespace Rest.Teams
             return jsonRequest;
         }
 
-        private string ArmarBodyNotificacionCanal(string url)
+        private string ArmarBodyNotificacionCanal(string url, string cliente, string producto)
         {
             var meetingRequest = new
             {
-                body = new { contentType = "html", content = $"Un cliente necesita contactarse: <a href={url}>Unirse a la reunion</a>" }
+                body = new { contentType = "html", content = $"El cliente: "+cliente+" necesita contactarse por el Producto:"+producto+" : <a href={url}>Unirse a la reunion</a>" }
             };
 
             string jsonRequest = JsonConvert.SerializeObject(meetingRequest);
@@ -83,18 +83,28 @@ namespace Rest.Teams
             }
         }
 
-        private string EnviarNotificacionACanal(string linkMeeting)
+        private string EnviarNotificacionACanal(string linkMeeting, string cliente, string producto)
         {
-            string jsonRequest = ArmarBodyNotificacionCanal(linkMeeting);
+            string jsonRequest = ArmarBodyNotificacionCanal(linkMeeting, cliente, producto);
 
             using (var clientMeeting = new HttpClient())
             {
                 CompletarHeader(token, clientMeeting);
 
                 Dictionary<string, string> configuracion = new ConfiguracionService().ObtenerConfiguracion();
+                var teamId = configuracion["teamId"];
+                var channelId = configuracion["channelId"];
+                if (configuracion["config"] == "mongo") 
+                {
+                    var configuracionMongo = new MongoService().ObtenerConfiguracion();
+                    teamId = configuracionMongo.TeamId;
+                    channelId = configuracionMongo.ChannelId;
+                }
+            
+                //urlPostNotificacionCanal = Constantes.UrlApiGraph + Constantes.EndPointNotificacionTeams + configuracion["teamId"] + Constantes.EndPointNotificacionChannel + configuracion["channelId"] + Constantes.EndPointNotificacionMessages;
+                urlPostNotificacionCanal = Constantes.UrlApiGraph + Constantes.EndPointNotificacionTeams + teamId + Constantes.EndPointNotificacionChannel + channelId + Constantes.EndPointNotificacionMessages;
 
-                urlPostNotificacionCanal = Constantes.UrlApiGraph + Constantes.EndPointNotificacionTeams + configuracion["teamId"] + Constantes.EndPointNotificacionChannel + configuracion["channelId"] + Constantes.EndPointNotificacionMessages;
-                
+
                 var responseMeeting = EnviarSolicitud(urlPostNotificacionCanal, jsonRequest, clientMeeting);
 
                 return ProcesarRespuestaNotificacionCanal(responseMeeting, linkMeeting);

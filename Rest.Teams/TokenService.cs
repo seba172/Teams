@@ -13,9 +13,16 @@ namespace Rest.Teams
     {
         public string ObtenerToken()
         {
-            Dictionary<string, string> configuracion = new ConfiguracionService().ObtenerConfiguracion();
+            Dictionary<string, string> configuracion = new ConfiguracionService().ObtenerConfiguracion();    
+
             
-            var tenantId = configuracion["tenantId"];
+            var tenantId = configuracion["tenantId"];    
+
+            if (configuracion["config"] == "mongo")
+            {
+                var configuracionMongo = new MongoService().ObtenerConfiguracion();
+                tenantId = configuracionMongo.TenantId;    
+            }
 
             var urlToken = Constantes.UrlToken + tenantId + Constantes.EndPointToken;
 
