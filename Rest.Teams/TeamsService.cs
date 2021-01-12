@@ -12,13 +12,6 @@ namespace Rest.Teams
 {
     public class TeamsService
     {
-        /*
-         Valor de ejemplo
-         https://teams.microsoft.com/l/channel/19%3a47bf61651d4d45dfa2eb14076f235f9b%40thread.tacv2/Notificaciones?groupId=205df3c8-cb94-4596-a1f8-73317f2f8278&tenantId=20f9a21d-88c0-4e21-8617-3c7298c5874a
-         Notas para desarrollador> Actualizar los valores de teamId y channelId con el informado por la configuracion del Team
-            El valor groupId se corresponde con el teamId
-            El valor que se encuentra luego de channel se corresponde con el channelId
-        */
         private string token;
         private string urlPostMeeting = Constantes.UrlApiGraph + Constantes.EndPointMeeting;
         private string urlPostNotificacionCanal;
